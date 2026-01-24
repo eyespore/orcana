@@ -1,7 +1,7 @@
 package cc.pineclone.automation.definition;
 
+import cc.pineclone.automation.AutomationJob;
 import cc.pineclone.automation.common.TriggerMode;
-import cc.pineclone.automation.Macro;
 import cc.pineclone.automation.input.Key;
 import cc.pineclone.automation.input.MouseButton;
 import cc.pineclone.automation.input.MouseWheelScroll;
@@ -28,7 +28,7 @@ public class SwitchGlitchMacroDefinition implements MacroDefinition {
     }
 
     @Override
-    public Macro createMacroInstance(MacroParams params) {
+    public AutomationJob createMacroInstance(MacroParams params) {
         return null;
     }
 }

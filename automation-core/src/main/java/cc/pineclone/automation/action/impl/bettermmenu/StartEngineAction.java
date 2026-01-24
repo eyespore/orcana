@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl.bettermmenu;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.input.Key;
 import cc.pineclone.automation.trigger.TriggerStatus;
 
@@ -20,7 +20,7 @@ public class StartEngineAction extends BetterMMenuAction {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
 //        Logger.lowLevelDebug(event.toString());
         try {
             boolean shouldOpenVehicleDoor = false;

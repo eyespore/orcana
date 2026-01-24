@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 
 public class ActionDecorator extends Action {
 
@@ -12,12 +12,12 @@ public class ActionDecorator extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         delegate.activate(event);
     }
 
     @Override
-    public void deactivate(MacroEvent event) {
+    public void deactivate(AutomationJobEvent event) {
         delegate.deactivate(event);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /* 鼠标输入源 */
-public class MouseButtonSource extends InputSource implements NativeMouseListener {
+public class MouseButtonSource extends JNativeHookInputSource implements NativeMouseListener {
 
     private final Map<Integer, Key> keys = new HashMap<>();
 
@@ -27,7 +27,7 @@ public class MouseButtonSource extends InputSource implements NativeMouseListene
     public void nativeMousePressed(NativeMouseEvent nativeEvent) {
         int vcMouse = nativeEvent.getButton();
         if (keys.containsKey(vcMouse)) {
-            listener.onInputSourceEvent(InputSourceEvent.of(InputSourceEvent.Operation.MOUSE_PRESSED, keys.get(vcMouse)));
+            listener.onInputSourceEvent(JNativeHookInputSourceEvent.of(JNativeHookInputSourceEvent.Operation.MOUSE_PRESSED, keys.get(vcMouse)));
         }
     }
 
@@ -35,7 +35,7 @@ public class MouseButtonSource extends InputSource implements NativeMouseListene
     public void nativeMouseReleased(NativeMouseEvent nativeEvent) {
         int vcMouse = nativeEvent.getButton();
         if (keys.containsKey(vcMouse)) {
-            listener.onInputSourceEvent(InputSourceEvent.of(InputSourceEvent.Operation.MOUSE_RELEASED, keys.get(vcMouse)));
+            listener.onInputSourceEvent(JNativeHookInputSourceEvent.of(JNativeHookInputSourceEvent.Operation.MOUSE_RELEASED, keys.get(vcMouse)));
         }
     }
 }

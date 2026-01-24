@@ -1,7 +1,7 @@
 package cc.pineclone.automation.action.impl.betterlbutton;
 
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
 import cc.pineclone.automation.input.Key;
@@ -21,14 +21,14 @@ public class HoldLButtonAction extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         if (running) return;
         running = true;
         robot.mousePress(leftButton);
     }
 
     @Override
-    public void deactivate(MacroEvent event) {
+    public void deactivate(AutomationJobEvent event) {
         if (!running) return;
         robot.mouseRelease(leftButton);
         running = false;

@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl.actionext;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.action.Action;
 import cc.pineclone.automation.input.Key;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class RecordAction extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         /* 触发记录，覆写原始targetRangedWeaponKey */
         targetKey = sourceToTargetMap.get(event.getTriggerEvent().getInputSourceEvent().getKey());
     }

@@ -1,7 +1,7 @@
 package cc.pineclone.automation.action.impl.actionext;
 
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 
 /**
  *  该动作用于作为封锁计时器，当激活该Action时，会进入时长为blockDuration的倒计时
@@ -24,12 +24,12 @@ public class BlockAction extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         this.blocked = true;  /* 触发封锁 */
     }
 
     @Override
-    public void deactivate(MacroEvent event) {
+    public void deactivate(AutomationJobEvent event) {
         this.blocked = false;
         blockStartTime = System.currentTimeMillis();
     }

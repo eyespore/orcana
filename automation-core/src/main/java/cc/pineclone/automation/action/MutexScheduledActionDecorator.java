@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 
 /* todo: 引入动作优先级 */
 /* 优先级互斥定时动作装饰器 */
@@ -15,17 +15,17 @@ public class MutexScheduledActionDecorator extends ScheduledAction  {
     }
 
     @Override
-    public void schedule(MacroEvent event) {
+    public void schedule(AutomationJobEvent event) {
         delegate.schedule(event);
     }
 
     @Override
-    public boolean beforeSchedule(MacroEvent event) {
+    public boolean beforeSchedule(AutomationJobEvent event) {
         return delegate.beforeSchedule(event);
     }
 
     @Override
-    public void afterSchedule(MacroEvent event) {
+    public void afterSchedule(AutomationJobEvent event) {
         delegate.afterSchedule(event);
     }
 

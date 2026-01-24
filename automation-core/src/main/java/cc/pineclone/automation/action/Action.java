@@ -1,13 +1,13 @@
 package cc.pineclone.automation.action;
 
-import cc.pineclone.automation.MacroEvent;
-import cc.pineclone.automation.MacroLifecycleAware;
+import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.AutomationJobEventListener;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public abstract class Action implements ActionLifecycle, MacroLifecycleAware {
+public abstract class Action implements ActionLifecycle, AutomationJobEventListener {
 
     /* 主要用于装饰器辨别当前父动作，以获取缓存的机器人实例 */
     @Getter protected final String actionId;
@@ -22,7 +22,7 @@ public abstract class Action implements ActionLifecycle, MacroLifecycleAware {
         this.actionId = actionId;
     }
 
-    public final void doActivate(MacroEvent event) {
+    public final void doActivate(AutomationJobEvent event) {
         boolean flag = beforeActivate(event);
         if (flag) {
             activate(event);
@@ -30,7 +30,7 @@ public abstract class Action implements ActionLifecycle, MacroLifecycleAware {
         }
     }
 
-    public final void doDeactivate(MacroEvent event) {
+    public final void doDeactivate(AutomationJobEvent event) {
         boolean flag = beforeDeactivate(event);
         if (flag) {
             deactivate(event);
@@ -39,7 +39,7 @@ public abstract class Action implements ActionLifecycle, MacroLifecycleAware {
     }
 
     @Override
-    public final void onMacroSuspend(MacroEvent event) {
+    public final void onAutomationSuspend(AutomationJobEvent event) {
         this.doDeactivate(event);
     }
 }

@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class TriggerFactory {
 
-    /** 用来存放已创建的 CompositeTrigger，键为 id */
     private static final ConcurrentMap<TriggerIdentity, Trigger> singleTriggerRegistry = new ConcurrentHashMap<>();
 
     @Deprecated
@@ -28,17 +27,7 @@ public class TriggerFactory {
         return singleTriggerRegistry.computeIfAbsent(identity, key -> createSimpleTrigger(identity));
     }
 
-    public static Trigger composite(TriggerIdentity... identities) {
-        Set<TriggerIdentity> set = new HashSet<>(Arrays.asList(identities));  /* 去重 */
-        if (set.size() == 1) return simple(set.iterator().next());
-        else return new CompositeTrigger(set.stream().map(TriggerFactory::simple).collect(Collectors.toSet()));
-    }
 
-    public static Trigger union(TriggerIdentity... identities) {
-        Set<TriggerIdentity> set = new HashSet<>(Arrays.asList(identities));  /* 去重 */
-        if (set.size() == 1) return simple(set.iterator().next());
-        return new UnionTrigger(set.stream().map(TriggerFactory::simple).collect(Collectors.toSet()));
-    }
 
     /* 构建最小的触发器单位 */
     private static Trigger createSimpleTrigger(TriggerIdentity identity) {

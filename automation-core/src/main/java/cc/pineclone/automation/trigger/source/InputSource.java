@@ -1,48 +1,35 @@
 package cc.pineclone.automation.trigger.source;
 
-/* 信号源 */
-
-import cc.pineclone.automation.MacroEvent;
-import cc.pineclone.automation.MacroLifecycleAware;
-import com.github.kwhat.jnativehook.GlobalScreen;
-import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-import com.github.kwhat.jnativehook.mouse.NativeMouseListener;
-import com.github.kwhat.jnativehook.mouse.NativeMouseWheelListener;
+import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.AutomationJobEventListener;
 import lombok.Setter;
 
-/**
- * @see KeyboardSource
- */
-public abstract class InputSource implements MacroLifecycleAware {
+public abstract class InputSource implements AutomationJobEventListener {
 
+    /* 是否已经安装了监听器，避免监听器重复安装 */
     private volatile boolean installed = false;
     @Setter protected InputSourceListener listener;
 
-    /* 宏安装 */
+    protected abstract void init();  /* 初始化 */
+    protected abstract void stop();  /* 清理资源 */
+
     @Override
-    public void onMacroLaunch(MacroEvent event) {
+    public void onAutomationLaunch(AutomationJobEvent event) {
         if (installed) return;
-        if (this instanceof NativeKeyListener) {
-            GlobalScreen.addNativeKeyListener((NativeKeyListener) this);
-        } else if (this instanceof NativeMouseListener) {
-            GlobalScreen.addNativeMouseListener((NativeMouseListener) this);
-        } else if (this instanceof NativeMouseWheelListener) {
-            GlobalScreen.addNativeMouseWheelListener((NativeMouseWheelListener) this);
-        } else return;
+        init();
         installed = true;
     }
 
-    /* 宏卸载 */
     @Override
-    public void onMacroTerminate(MacroEvent event) {
+    public void onAutomationTerminate(AutomationJobEvent event) {
         if (!installed) return;
-        if (this instanceof NativeKeyListener) {
-            GlobalScreen.removeNativeKeyListener((NativeKeyListener) this);
-        } else if (this instanceof NativeMouseListener) {
-            GlobalScreen.removeNativeMouseListener((NativeMouseListener) this);
-        } else if (this instanceof NativeMouseWheelListener) {
-            GlobalScreen.removeNativeMouseWheelListener((NativeMouseWheelListener) this);
-        } else return;
+        stop();
         installed = false;
+    }
+
+    protected void fire(JNativeHookInputSourceEvent event) {
+        if (listener != null) {
+            listener.onInputSourceEvent(event);
+        }
     }
 }

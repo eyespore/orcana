@@ -1,7 +1,7 @@
 package cc.pineclone.automation.action.impl.betterlbutton;
 
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
 import cc.pineclone.automation.input.Key;
@@ -19,12 +19,12 @@ public class RemapLButtonAction extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         robot.mousePress(leftButton);
     }
 
     @Override
-    public void deactivate(MacroEvent event) {
+    public void deactivate(AutomationJobEvent event) {
         robot.mouseRelease(leftButton);
     }
 }

@@ -1,18 +1,18 @@
 package cc.pineclone.automation.trigger;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.trigger.policy.ActivationPolicy;
-import cc.pineclone.automation.trigger.source.InputSource;
-import cc.pineclone.automation.trigger.source.InputSourceEvent;
+import cc.pineclone.automation.trigger.source.JNativeHookInputSource;
+import cc.pineclone.automation.trigger.source.JNativeHookInputSourceEvent;
 import cc.pineclone.automation.trigger.source.InputSourceListener;
 
 /* 触发器 */
 public class SimpleTrigger extends Trigger implements InputSourceListener {
 
     private final ActivationPolicy policy;
-    private final InputSource source;
+    private final JNativeHookInputSource source;
 
-    public SimpleTrigger(InputSource source, ActivationPolicy policy) {
+    public SimpleTrigger(JNativeHookInputSource source, ActivationPolicy policy) {
         this.policy = policy;
         this.source = source;
         source.setListener(this);
@@ -27,10 +27,10 @@ public class SimpleTrigger extends Trigger implements InputSourceListener {
      * SimpleTrigger继续指向新的Macro实例，那么onMacroLaunch时初始化应该不再被触发
      */
     @Override
-    public void onMacroLaunch(MacroEvent event) {
+    public void onAutomationLaunch(AutomationJobEvent event) {
         if (!isLaunched) {
-            this.source.onMacroLaunch(event);
-            this.policy.onMacroLaunch(event);
+            this.source.onAutomationLaunch(event);
+            this.policy.onAutomationLaunch(event);
             isLaunched = true;
         }
     }
@@ -40,11 +40,11 @@ public class SimpleTrigger extends Trigger implements InputSourceListener {
      * 自己的监听器列表被彻底清空时，才会触发Policy和Source的卸载，否则会导致其中一个宏卸载引起另一个宏失效的情况
      */
     @Override
-    public void onMacroTerminate(MacroEvent event) {
+    public void onAutomationTerminate(AutomationJobEvent event) {
         if (listeners.isEmpty()) {
             /* 监听器（Macro）已经被全部移除，可以执行对ActivationPolicy和InputSource的终止 */
-            this.policy.onMacroTerminate(event);
-            this.source.onMacroTerminate(event);
+            this.policy.onAutomationTerminate(event);
+            this.source.onAutomationTerminate(event);
             isLaunched = false;
         } else {
             log.debug("Trigger is not allow to terminate, unregistered listeners: {}", listeners);
@@ -52,16 +52,8 @@ public class SimpleTrigger extends Trigger implements InputSourceListener {
     }
 
     @Override
-    public void onInputSourceEvent(InputSourceEvent event) {
+    public void onInputSourceEvent(JNativeHookInputSourceEvent event) {
         policy.decide(event, o -> o.ifPresent(
                 s -> super.fire(TriggerEvent.of(this, s, event))));
-    }
-
-    @Override
-    public String toString() {
-        return "SimpleTrigger{" +
-                "policy=" + policy +
-                ", source=" + source +
-                '}';
     }
 }

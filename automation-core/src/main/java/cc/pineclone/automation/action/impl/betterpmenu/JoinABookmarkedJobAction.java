@@ -1,7 +1,7 @@
 package cc.pineclone.automation.action.impl.betterpmenu;
 
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
 import cc.pineclone.automation.input.Key;
@@ -44,7 +44,7 @@ public class JoinABookmarkedJobAction extends Action {
     }
 
     @Override
-    public void activate(MacroEvent event) {
+    public void activate(AutomationJobEvent event) {
         try {
             pressP();
             Thread.sleep(200);

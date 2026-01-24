@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl;
 
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import cc.pineclone.automation.action.ScheduledAction;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -24,7 +24,7 @@ public class RouletteSnakeAction extends ScheduledAction {
     }
 
     @Override
-    public void schedule(MacroEvent event) {
+    public void schedule(AutomationJobEvent event) {
         try {
             robot.simulate(this.snakeKey);
         } catch (InterruptedException ignored) {

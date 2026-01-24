@@ -1,7 +1,7 @@
 package cc.pineclone.automation.action;
 
 import cc.pineclone.automation.AutomationContext;
-import cc.pineclone.automation.MacroEvent;
+import cc.pineclone.automation.AutomationJobEvent;
 import lombok.Getter;
 
 import java.util.concurrent.ScheduledFuture;
@@ -27,7 +27,7 @@ public abstract class ScheduledAction extends Action implements ScheduleActionLi
     }
 
     @Override
-    public final void activate(MacroEvent event) {
+    public final void activate(AutomationJobEvent event) {
         if (running.compareAndSet(false, true)) {
             scheduledFuture = AutomationContext.getInstance().getScheduler().scheduleAtFixedRate(() -> {
                 boolean flag = beforeSchedule(event);
@@ -40,7 +40,7 @@ public abstract class ScheduledAction extends Action implements ScheduleActionLi
     }
 
     @Override
-    public final void deactivate(MacroEvent event) {
+    public final void deactivate(AutomationJobEvent event) {
         if (running.compareAndSet(true, false)) {
             if (scheduledFuture != null && !scheduledFuture.isCancelled()) {
                 scheduledFuture.cancel(true);
