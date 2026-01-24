@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl.betterlbutton;
 
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.ScheduledAction;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -19,7 +19,7 @@ public class RapidlyClickLButtonAction extends ScheduledAction {
     }
 
     @Override
-    public void schedule(AutomationJobEvent event) {
+    public void schedule(MacroEvent event) {
         try {
             robot.simulate(leftButton);
         } catch (InterruptedException ignored) {

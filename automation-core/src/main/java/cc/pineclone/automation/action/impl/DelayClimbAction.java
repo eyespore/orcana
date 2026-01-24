@@ -1,9 +1,9 @@
 package cc.pineclone.automation.action.impl;
 
-import cc.pineclone.automation.AutomationJob;
+import cc.pineclone.automation.Macro;
 import cc.pineclone.automation.AutomationContext;
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.ScheduledAction;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -48,7 +48,7 @@ public class DelayClimbAction extends Action {
         }
 
         @Override
-        public void schedule(AutomationJobEvent event) {
+        public void schedule(MacroEvent event) {
             try {
                 /* 进入CameraAction时相机应当处关闭状态，因此首先启用相机 */
                 enterCamera();
@@ -64,9 +64,9 @@ public class DelayClimbAction extends Action {
         }
 
         @Override
-        public void afterDeactivate(AutomationJobEvent event) {
+        public void afterDeactivate(MacroEvent event) {
             /* 检查是否启用了退出时自动寻找掩体 */
-            if (event.getAutomationContext().getExecutionStatus().equals(AutomationJob.JobExecutionStatus.SUSPENDED)) return;
+            if (event.getMacroContext().getExecutionStatus().equals(Macro.MacroExecutionStatus.SUSPENDED)) return;
 
             if (DelayClimbAction.this.hideInCoverOnExit) {
                 try {
@@ -121,7 +121,7 @@ public class DelayClimbAction extends Action {
 
     /* 在进入循环之前的逻辑，该方法被用于执行宏的阶段1 */
     @Override
-    public void activate(AutomationJobEvent event) {
+    public void activate(MacroEvent event) {
         /* 检查阶段二是否正在运行 */
         if (stopPhase2IfRunning(event)) return;
 
@@ -148,7 +148,7 @@ public class DelayClimbAction extends Action {
         return false;
     }
 
-    private boolean stopPhase2IfRunning(AutomationJobEvent event) {
+    private boolean stopPhase2IfRunning(MacroEvent event) {
         /* 检查阶段二是否正在运行 */
         if (isPhase2Running.get()) {
             /* 当前循环已经运行，停止循环 */
@@ -158,7 +158,7 @@ public class DelayClimbAction extends Action {
         return false;
     }
 
-    private void startPhase1(AutomationJobEvent event) {
+    private void startPhase1(MacroEvent event) {
         /* 阶段一未运行，提交运行任务 */
         isPhase1Running.set(true);
         future = AutomationContext.getInstance().getScheduler().schedule(() -> {
@@ -192,7 +192,7 @@ public class DelayClimbAction extends Action {
     }
 
     @Override
-    public void deactivate(AutomationJobEvent event) {
+    public void deactivate(MacroEvent event) {
         /* 由于延迟攀Action采用子动作，而不是子宏，子动作并不会被纳入MacroRegistry中得到挂起信号，因此
         *  需要由父动作管理，当挂起时deactivate会被调用，此时由父动作停止子动作 */
         if (stopPhase2IfRunning(event)) return;

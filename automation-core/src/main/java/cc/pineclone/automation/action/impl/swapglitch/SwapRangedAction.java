@@ -1,8 +1,8 @@
 package cc.pineclone.automation.action.impl.swapglitch;
 
-import cc.pineclone.automation.AutomationJob;
+import cc.pineclone.automation.Macro;
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.ActionDecorator;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -37,7 +37,7 @@ public class SwapRangedAction extends ActionDecorator {
 
     /* 若用户启用了在没有选中武器时自动切换默认远程武器，那么在触发之前，设置默认远程武器为目标武器 */
     @Override
-    public boolean beforeActivate(AutomationJobEvent event) {
+    public boolean beforeActivate(MacroEvent event) {
         if (!delegate.beforeActivate(event)) return false;
         if (swapDefaultRangedWeaponOnEmpty) {
             targetRangedWeaponKey = defaultRangedWeaponKey;
@@ -46,7 +46,7 @@ public class SwapRangedAction extends ActionDecorator {
     }
 
     @Override
-    public void activate(AutomationJobEvent event) {
+    public void activate(MacroEvent event) {
         Key targetKey = sourceToTargetMap.get(event.getTriggerEvent().getInputSourceEvent().getKey());
         if (targetKey != null) {
             log.debug("Target key is {}", targetKey);
@@ -58,8 +58,8 @@ public class SwapRangedAction extends ActionDecorator {
 
     /* 在宏(例如切枪偷速、近战偷速)执行结束之后，尝试切换远程武器 */
     @Override
-    public void afterDeactivate(AutomationJobEvent event) {
-        if (event.getAutomationContext().getExecutionStatus().equals(AutomationJob.JobExecutionStatus.SUSPENDED)) return;
+    public void afterDeactivate(MacroEvent event) {
+        if (event.getMacroContext().getExecutionStatus().equals(Macro.MacroExecutionStatus.SUSPENDED)) return;
         if (targetRangedWeaponKey != null) {
             try {
                 Thread.sleep(20);

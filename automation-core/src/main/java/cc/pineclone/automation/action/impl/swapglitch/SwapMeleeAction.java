@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl.swapglitch;
 
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.Action;
 import cc.pineclone.automation.action.ActionDecorator;
 import cc.pineclone.automation.action.robot.RobotFactory;
@@ -22,7 +22,7 @@ public class SwapMeleeAction extends ActionDecorator {
 
     /* 在动作(比如切枪偷速)开始之前，切换到近战武器 */
     @Override
-    public boolean beforeActivate(AutomationJobEvent event) {
+    public boolean beforeActivate(MacroEvent event) {
         try {
             if (!delegate.beforeActivate(event)) return false;
 

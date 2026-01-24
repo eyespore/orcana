@@ -115,7 +115,7 @@ AD摇问题修复
 >
 > 由于GTA-Ops的键盘、鼠标输入源监听依赖`com.github.kwhat.jnativehook`，因此对某些按键、鼠标侧键的支持情况会依赖该库对鼠标、键盘的监听支持是否完整
 
-`cc.pineclone.server.automation.trigger.source.InputSource.java`是所有事件源的父类，它定义了包括：
+`cc.pineclone.server.macro.trigger.source.InputSource.java`是所有事件源的父类，它定义了包括：
 
 - `install/uninstall`方法：调用这个方法来将事件源事件源从`jnativehook`提供的全局监听器`GlobalScreen`当中添加或移除
 - `listener`属性：定义当前`InputSource`的监听器，当`jnativehook`（或其他第三方库）触发目标事件时，原始事件会被`InputSource`实现类封装成`InputSourceEvent`，一个完整的`InputSourceEvent`描述了该事件源是如何触发的，来自什么事件、按键等等，封装好的`InputSourceEvent`对象会被传递给监听器`listener`

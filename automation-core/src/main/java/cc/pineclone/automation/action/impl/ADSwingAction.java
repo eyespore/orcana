@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl;
 
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.ScheduledAction;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -30,7 +30,7 @@ public class ADSwingAction extends ScheduledAction {
     }
 
     @Override
-    public void schedule(AutomationJobEvent event) {
+    public void schedule(MacroEvent event) {
         try {
             if (pressLeft) {  /* 按下左 */
                 pressLeft = false;

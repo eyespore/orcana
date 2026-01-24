@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action.impl;
 
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.ScheduledAction;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
@@ -54,7 +54,7 @@ public class AutoFireAction extends ScheduledAction {
     }
 
     @Override
-    public boolean beforeActivate(AutomationJobEvent event) {
+    public boolean beforeActivate(MacroEvent event) {
         /* 首先获取连发映射目标 */
         Key sourceKey = event.getTriggerEvent().getInputSourceEvent().getKey();
         AutoFireTarget target = sourceToTargetMap.get(sourceKey);
@@ -80,7 +80,7 @@ public class AutoFireAction extends ScheduledAction {
 
     /* 连发 RPG 循环 */
     @Override
-    public void schedule(AutomationJobEvent event) {
+    public void schedule(MacroEvent event) {
         /* 首先获取连发映射目标 */
         Key sourceKey = event.getTriggerEvent().getInputSourceEvent().getKey();
         AutoFireTarget target = sourceToTargetMap.get(sourceKey);

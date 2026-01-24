@@ -1,7 +1,23 @@
 package cc.pineclone.automation;
 
+import cc.pineclone.automation.action.impl.*;
 import cc.pineclone.automation.definition.MacroDefinition;
 import cc.pineclone.automation.definition.MacroParams;
+import cc.pineclone.automation.input.Key;
+import cc.pineclone.automation.action.Action;
+import cc.pineclone.automation.action.impl.betterlbutton.HoldLButtonAction;
+import cc.pineclone.automation.action.impl.betterlbutton.RapidlyClickLButtonAction;
+import cc.pineclone.automation.action.impl.betterlbutton.RemapLButtonAction;
+import cc.pineclone.automation.action.impl.bettermmenu.AutoSnakeAction;
+import cc.pineclone.automation.action.impl.bettermmenu.StartEngineAction;
+import cc.pineclone.automation.action.impl.betterpmenu.JoinABookmarkedJobAction;
+import cc.pineclone.automation.action.impl.betterpmenu.JoinANewSessionAction;
+import cc.pineclone.automation.action.impl.swapglitch.SwapGlitchAction;
+import cc.pineclone.automation.action.impl.swapglitch.SwapMeleeAction;
+import cc.pineclone.automation.action.impl.swapglitch.SwapRangedAction;
+import cc.pineclone.automation.trigger.Trigger;
+import cc.pineclone.automation.trigger.TriggerFactory;
+import cc.pineclone.automation.trigger.TriggerIdentity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,11 +41,11 @@ public class MacroFactory {
     }
 
     // 使用默认参数创建宏实例
-    public AutomationJob create(String macroType) {
+    public Macro create(String macroType) {
         return create(macroType, null);
     }
 
-    public AutomationJob create(String macroType, MacroParams params) {
+    public Macro create(String macroType, MacroParams params) {
         MacroDefinition definition = registry.get(macroType);
         if (definition == null) {
             throw new IllegalArgumentException("Unknown macro: " + macroType);
@@ -278,10 +294,10 @@ public class MacroFactory {
     /**
      * 宏创建策略
      */
-    public interface Strategy<T> extends Function<T, AutomationJob> { }
+    public interface Strategy<T> extends Function<T, Macro> { }
 
     public record MacroCreationUnit<T>(Class<T> dtoClass, Strategy<T> strategy) {
-        public AutomationJob create(Object dto) {
+        public Macro create(Object dto) {
             return strategy.apply(dtoClass.cast(dto));
         }
     }

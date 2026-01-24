@@ -2,7 +2,7 @@ package cc.pineclone.automation.action.impl.betterpmenu;
 
 import cc.pineclone.automation.common.SessionType;
 import cc.pineclone.automation.action.Action;
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 import cc.pineclone.automation.action.robot.RobotFactory;
 import cc.pineclone.automation.action.robot.VCRobotAdapter;
 import cc.pineclone.automation.input.Key;
@@ -46,7 +46,7 @@ public class JoinANewSessionAction extends Action {
     }
 
     @Override
-    public void activate(AutomationJobEvent event) {
+    public void activate(MacroEvent event) {
         try {
             pressP();
             Thread.sleep(200);

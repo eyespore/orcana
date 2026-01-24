@@ -1,6 +1,6 @@
 package cc.pineclone.automation.action;
 
-import cc.pineclone.automation.AutomationJobEvent;
+import cc.pineclone.automation.MacroEvent;
 
 public class ScheduledActionDecorator extends ScheduledAction {
 
@@ -12,17 +12,17 @@ public class ScheduledActionDecorator extends ScheduledAction {
     }
 
     @Override
-    public void schedule(AutomationJobEvent event) {
+    public void schedule(MacroEvent event) {
         delegate.schedule(event);
     }
 
     @Override
-    public boolean beforeSchedule(AutomationJobEvent event) {
+    public boolean beforeSchedule(MacroEvent event) {
         return delegate.beforeSchedule(event);
     }
 
     @Override
-    public void afterSchedule(AutomationJobEvent event) {
+    public void afterSchedule(MacroEvent event) {
         delegate.afterSchedule(event);
     }
 }

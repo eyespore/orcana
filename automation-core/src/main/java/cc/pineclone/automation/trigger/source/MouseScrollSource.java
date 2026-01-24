@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /* 鼠标滚轮输入源 */
-public class MouseScrollSource extends JNativeHookInputSource implements NativeMouseWheelListener {
+public class MouseScrollSource extends InputSource implements NativeMouseWheelListener {
 
     private final Map<Integer, Key> keys = new HashMap<>();
 
@@ -27,7 +27,7 @@ public class MouseScrollSource extends JNativeHookInputSource implements NativeM
     public void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
         int vcScroll = nativeEvent.getWheelDirection();
         if (keys.containsKey(vcScroll)) {
-            listener.onInputSourceEvent(JNativeHookInputSourceEvent.of(JNativeHookInputSourceEvent.Operation.MOUSE_WHEEL_MOVED, keys.get(vcScroll)));
+            listener.onInputSourceEvent(InputSourceEvent.of(InputSourceEvent.Operation.MOUSE_WHEEL_MOVED, keys.get(vcScroll)));
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /* 键盘输入源 */
-public class KeyboardSource extends JNativeHookInputSource implements NativeKeyListener {
+public class KeyboardSource extends InputSource implements NativeKeyListener {
 
     private final Map<Integer, Key> keys = new HashMap<>();
 
@@ -26,7 +26,7 @@ public class KeyboardSource extends JNativeHookInputSource implements NativeKeyL
     public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
         int keyCode = nativeEvent.getKeyCode();
         if (keys.containsKey(keyCode)) {
-            listener.onInputSourceEvent(JNativeHookInputSourceEvent.of(JNativeHookInputSourceEvent.Operation.KEY_PRESSED, keys.get(keyCode)));
+            listener.onInputSourceEvent(InputSourceEvent.of(InputSourceEvent.Operation.KEY_PRESSED, keys.get(keyCode)));
         }
     }
 
@@ -34,7 +34,7 @@ public class KeyboardSource extends JNativeHookInputSource implements NativeKeyL
     public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
         int keyCode = nativeEvent.getKeyCode();
         if (keys.containsKey(keyCode)) {
-            listener.onInputSourceEvent(JNativeHookInputSourceEvent.of(JNativeHookInputSourceEvent.Operation.KEY_RELEASED, keys.get(keyCode)));
+            listener.onInputSourceEvent(InputSourceEvent.of(InputSourceEvent.Operation.KEY_RELEASED, keys.get(keyCode)));
         }
     }
 }
