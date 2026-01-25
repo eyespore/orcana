@@ -17,7 +17,7 @@
 
     <modules>
         <module>server</module>
-        <module>automation-core</module>
+        <module>workflow-core</module>
     </modules>
 
     <properties>
