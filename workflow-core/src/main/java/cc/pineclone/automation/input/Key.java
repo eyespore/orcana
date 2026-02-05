@@ -2,6 +2,7 @@ package cc.pineclone.automation.input;
 
 import java.util.*;
 
+@Deprecated
 public class Key {
 
     public final MouseButton button;
@@ -216,7 +217,6 @@ public class Key {
         result = 31 * result + (raw != null ? raw.hashCode() : 0);
         return result;
     }
-
 
     // TODO: KEY序列化
 //    public JSON.Object toJson() {

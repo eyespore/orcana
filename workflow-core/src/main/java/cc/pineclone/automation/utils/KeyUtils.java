@@ -14,6 +14,7 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Deprecated
 public class KeyUtils {
 
     /* -------------------- 按键字符串序列化 & 反序列化 */
@@ -45,12 +46,12 @@ public class KeyUtils {
         keyCodeToStringMap.forEach((k, v) -> stringToKeyCodeMap.put(v, k));
     }
 
-    /* 将Key实例转变为字符串 */
+    /* 将 Key 实例转变为字符串 */
     public static String toString(Key key) {
         return toString(key.button, key.scroll, key.key, key.isLeftKey);
     }
 
-    /* 对Key实例各个字段进行字符串序列化 */
+    /* 对 Key 实例各个字段进行字符串序列化 */
     private static String toString(MouseButton button, MouseWheelScroll scroll, KeyCode key, boolean isLeftKey) {
         String ret = null;
         if (button != null) {
@@ -68,7 +69,7 @@ public class KeyUtils {
         return ret;
     }
 
-    /* 将字符串构建成Key实例 */
+    /* 将字符串构建成 Key 实例 */
     public static Key fromString(String str) {
         /* 滚轮 */
         if (str.startsWith("scroll-")) {

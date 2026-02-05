@@ -2,79 +2,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cc.pineclone</groupId>
-    <artifactId>automation-core</artifactId>
+    <parent>
+        <groupId>cc.pineclone</groupId>
+        <artifactId>gtav-toolkit</artifactId>
+        <version>v0.2.0-alpha-3</version>
+    </parent>
+
+    <artifactId>workflow-core</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
 
-    <name>automation-core</name>
+    <name>workflow-core</name>
     <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
         </dependency>
 
         <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
-        </dependency>
-
-        <!-- Logback 实现 -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.5.6</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>13.0</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.github.kwhat</groupId>
             <artifactId>jnativehook</artifactId>
-            <version>2.2.2</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- 编译 Java 代码 -->
+            <!-- 编译器 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                    <annotationProcessorPaths>
-                        <!-- 处理 Lombok 注解 -->
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.34</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <!-- 生成 target/classes 的字节码以及 JNI 头文件 -->
                     <compilerArgs>
                         <arg>-h</arg>
                         <arg>${project.build.directory}/jni</arg>

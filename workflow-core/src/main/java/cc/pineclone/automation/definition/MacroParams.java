@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 /* 宏参数封装 */
+@Deprecated
 public class MacroParams {
 
     private final Map<String, Object> params = new HashMap<>();
