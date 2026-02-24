@@ -3,9 +3,10 @@ package cc.pineclone.workflow.trigger.jnativehook;
 import cc.pineclone.interaction.NeuModifierConstraint;
 import cc.pineclone.interaction.NeuMouseSpec;
 import cc.pineclone.interaction.api.ClickEdge;
-import cc.pineclone.workflow.trigger.DefaultTriggerEventDispatcher;
-import cc.pineclone.workflow.api.trigger.TriggerEvent;
-import cc.pineclone.workflow.api.trigger.TriggerEventIdentity;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventBuffer;
+import cc.pineclone.workflow.impl.trigger.DefaultTriggerEventBuffer;
+import cc.pineclone.workflow.api.trigger.event.TriggerEvent;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
 import cc.pineclone.workflow.api.trigger.TriggerIdentity;
 import cc.pineclone.workflow.trigger.jnativehook.api.NativeInputEventSource;
 import cc.pineclone.workflow.trigger.jnativehook.filter.NeuMouseSpecFilter;
@@ -32,7 +33,7 @@ public class MouseButtonTriggerTest {
     public JNativeHookRule rule = new JNativeHookRule();
 
     private final BlockingQueue<TriggerEvent> queue = new LinkedBlockingQueue<>();
-    DefaultTriggerEventDispatcher dispatcher = new DefaultTriggerEventDispatcher(queue);
+    TriggerEventBuffer buffer = new DefaultTriggerEventBuffer(queue);
 
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final NativeInputEventSource<NativeMouseEvent> source = new NativeMouseEventSource();
@@ -48,7 +49,7 @@ public class MouseButtonTriggerTest {
 
     @After
     public void after() {
-        if (trigger != null) trigger.destroy();
+        if (trigger != null) trigger.close();
         source.uninstall();
         scheduler.shutdown();
     }
@@ -62,15 +63,15 @@ public class MouseButtonTriggerTest {
                         new NeuMouseSpec(NeuMouseSpec.NeuMouseButton.BUTTON_1),
                         new NeuModifierConstraint(
                                 Set.of(),
-                                Set.of(NeuModifierConstraint.NeuModifierKey.BUTTON_1)
+                                Set.of()
                         )),
-                new ClickGesture.MouseButtonClickGesture(ClickEdge.FALLING, 2000, 3, 50, scheduler),
+                new ClickGesture.MouseButtonClickGesture(ClickEdge.FALLING, 0, 1, 2000, scheduler),
                 source
         );
         trigger.init();
-        trigger.attach(dispatcher);
+        trigger.attach(buffer);
         while (true) {
-            TriggerEvent event = dispatcher.take();
+            TriggerEvent event = buffer.take();
             log.debug("{}", event);
         }
     }
@@ -93,9 +94,9 @@ public class MouseButtonTriggerTest {
                 source
         );
         trigger.init();
-        trigger.attach(dispatcher);
+        trigger.attach(buffer);
         while (true) {
-            TriggerEvent event = dispatcher.take();
+            TriggerEvent event = buffer.take();
             log.debug("{}", event);
         }
     }

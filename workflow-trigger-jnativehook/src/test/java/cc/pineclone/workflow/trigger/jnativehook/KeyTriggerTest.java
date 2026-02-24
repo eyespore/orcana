@@ -3,9 +3,9 @@ package cc.pineclone.workflow.trigger.jnativehook;
 import cc.pineclone.interaction.NeuKeySpec;
 import cc.pineclone.interaction.NeuModifierConstraint;
 import cc.pineclone.interaction.api.ClickEdge;
-import cc.pineclone.workflow.trigger.DefaultTriggerEventDispatcher;
-import cc.pineclone.workflow.api.trigger.TriggerEvent;
-import cc.pineclone.workflow.api.trigger.TriggerEventIdentity;
+import cc.pineclone.workflow.impl.trigger.DefaultTriggerEventBuffer;
+import cc.pineclone.workflow.api.trigger.event.TriggerEvent;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
 import cc.pineclone.workflow.api.trigger.TriggerIdentity;
 import cc.pineclone.workflow.trigger.jnativehook.filter.NeuKeySpecFilter;
 import cc.pineclone.workflow.trigger.jnativehook.gesture.ClickGesture;
@@ -30,7 +30,7 @@ public class KeyTriggerTest {
     public JNativeHookRule rule = new JNativeHookRule();
 
     private final BlockingQueue<TriggerEvent> queue = new LinkedBlockingQueue<>();
-    DefaultTriggerEventDispatcher dispatcher = new DefaultTriggerEventDispatcher(queue);
+    DefaultTriggerEventBuffer dispatcher = new DefaultTriggerEventBuffer(queue);
 
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final NativeKeyEventSource source = new NativeKeyEventSource();
@@ -46,7 +46,7 @@ public class KeyTriggerTest {
 
     @After
     public void after() {
-        if (trigger != null) trigger.destroy();
+        if (trigger != null) trigger.close();
         source.uninstall();
         scheduler.shutdown();
     }

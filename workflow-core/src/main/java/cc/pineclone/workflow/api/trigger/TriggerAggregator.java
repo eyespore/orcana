@@ -1,5 +1,7 @@
 package cc.pineclone.workflow.api.trigger;
 
+import cc.pineclone.workflow.api.trigger.event.TriggerEvent;
+
 import java.util.List;
 
 public interface TriggerAggregator {

@@ -3,32 +3,35 @@ package cc.pineclone.workflow.trigger.jnativehook;
 import cc.pineclone.interaction.NeuKeySpec;
 import cc.pineclone.interaction.NeuModifierConstraint;
 import cc.pineclone.interaction.NeuMouseSpec;
-import cc.pineclone.workflow.DefaultWorkflowCore;
+import cc.pineclone.workflow.impl.DefaultRuntime;
+import cc.pineclone.workflow.api.Runtime;
 import cc.pineclone.workflow.api.trigger.*;
-import cc.pineclone.workflow.trigger.DefaultTriggerEventDispatcher;
-import cc.pineclone.workflow.trigger.UnionTriggerDefinition;
+import cc.pineclone.workflow.api.trigger.event.TriggerEvent;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
+import cc.pineclone.workflow.impl.trigger.factory.UnionTriggerDefinition;
 import cc.pineclone.workflow.trigger.jnativehook.api.SpecFilterDefinition;
+import cc.pineclone.workflow.trigger.jnativehook.gesture.GestureDefinition;
 import org.junit.Rule;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class JNativeHookPluginTest {
 
     @Rule
     public JNativeHookRule rule = new JNativeHookRule();
 
-    private final BlockingQueue<TriggerEvent> eventQueue = new LinkedBlockingQueue<>();
-    private final TriggerEventDispatcher dispatcher = new DefaultTriggerEventDispatcher(eventQueue);
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Test
     public void test() throws InterruptedException {
-        DefaultWorkflowCore core = new DefaultWorkflowCore();
-        core.registerPlugin(new JNativeHookTriggerPlugin());
-        core.init();
+        Runtime runtime = new DefaultRuntime();
+        runtime.registerPlugin(new JNativeHookTriggerPlugin());
+        runtime.init();
 
         NeuKeyGestureTriggerDefinition definition1 = new NeuKeyGestureTriggerDefinition();
         definition1.setIdentity(new TriggerIdentity("test_domain", "my_neu_key_trigger"));
@@ -40,6 +43,10 @@ public class JNativeHookPluginTest {
 
         UnionTriggerDefinition definition2 = new UnionTriggerDefinition();
         definition2.setIdentity(new TriggerIdentity("test_domain", "my_union_trigger"));
+        definition2.setEventMapping(Map.of(
+                new TriggerEventIdentity("test_domain", "my_union_trigger_0", "SINGLE_CLICK"),
+                new TriggerEventIdentity("test_domain", "my_union_trigger", "MAPPED_CLICK")
+        ));
 
         NeuMouseGestureTriggerDefinition definition2_1 = new NeuMouseGestureTriggerDefinition();
         definition2_1.setFilterDefinition(new SpecFilterDefinition<>(
@@ -51,24 +58,15 @@ public class JNativeHookPluginTest {
                 definition2_1
         ));
 
-        TriggerIdentity identity1 = core.registerTrigger(definition1);
-        TriggerIdentity identity2 = core.registerTrigger(definition2);
+        TriggerIdentity identity1 = runtime.triggerService().admin().deploy(definition1);
+        TriggerIdentity identity2 = runtime.triggerService().admin().deploy(definition2);
 
-//        core.retainTrigger(identity1);
-//        core.retainTrigger(identity2);
-
-        core.getRootTriggers().forEach(t -> {
-            t.attach(dispatcher);
-            if (t instanceof TriggerLifecycleAware aware) {
-                aware.init();
-            }
-        });
+        runtime.triggerService().admin().activate(identity1);
+        runtime.triggerService().admin().activate(identity2);
 
         while (true) {
-            TriggerEvent event = dispatcher.take();
-            System.out.println(event);
+            TriggerEvent event = runtime.triggerService().events().take();
+            log.debug("{}", event);
         }
-
-
     }
 }

@@ -8,6 +8,8 @@ import cc.pineclone.workflow.trigger.jnativehook.api.JNativeHookModifierConstrai
 import cc.pineclone.workflow.trigger.jnativehook.api.JNativeHookMouseSpec;
 import cc.pineclone.workflow.trigger.jnativehook.api.SpecFilter;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -18,6 +20,8 @@ public class MouseSpecFilter<
         T, JNativeHookMouseSpec,
         M, JNativeHookModifierConstraint,
         NativeMouseEvent> {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public MouseSpecFilter(
             T originalSpec, InteractionSpecAdapter<T, JNativeHookMouseSpec> specAdapter,

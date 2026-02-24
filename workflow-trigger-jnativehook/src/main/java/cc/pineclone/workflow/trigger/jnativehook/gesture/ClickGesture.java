@@ -6,6 +6,8 @@ import cc.pineclone.workflow.trigger.jnativehook.api.GestureInterpreter;
 import com.github.kwhat.jnativehook.NativeInputEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -32,6 +34,8 @@ public abstract class ClickGesture<T extends NativeInputEvent> implements Gestur
     private final AtomicLong firstClickTime = new AtomicLong(0);
     private final AtomicBoolean fired = new AtomicBoolean(false);
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     public ClickGesture(
             ClickEdge edge,
             long clickThresholdMs,
@@ -52,9 +56,11 @@ public abstract class ClickGesture<T extends NativeInputEvent> implements Gestur
     @Override
     public void interpret(T event, Consumer<Gesture> callback) {
         if (!isEdgeMatch(event)) return;  /* 上升沿 下降沿过滤 */
+//        log.debug("ClickGesture edge matched: {}", event.paramString());
 
-        long now = event.getWhen();  /* 多次点击基于时间窗口判断 */
+        long now = System.currentTimeMillis();  /* 多次点击基于时间窗口判断 */
         if (now - lastFiredTime.get() < debounceMs) {  /* 防抖检查 */
+//            log.debug("Hit debounceMs check");
             return; // 短时间内忽略重复触发
         }
 
@@ -125,6 +131,8 @@ public abstract class ClickGesture<T extends NativeInputEvent> implements Gestur
     }
 
     public static class MouseButtonClickGesture extends ClickGesture<NativeMouseEvent> {
+        private final Logger log = LoggerFactory.getLogger(getClass());
+
         public MouseButtonClickGesture(
                 ClickEdge edge,
                 long clickThresholdMs,
@@ -136,6 +144,7 @@ public abstract class ClickGesture<T extends NativeInputEvent> implements Gestur
 
         @Override
         protected boolean isEdgeMatch(NativeMouseEvent event) {
+//            log.debug("Try matching event: {}", event.paramString());
             return (edge == ClickEdge.FALLING && event.getID() == NativeMouseEvent.NATIVE_MOUSE_PRESSED)
                     || (edge == ClickEdge.RISING  && event.getID() == NativeMouseEvent.NATIVE_MOUSE_RELEASED);
         }

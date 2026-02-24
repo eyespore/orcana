@@ -4,7 +4,7 @@ import cc.pineclone.interaction.NeuModifierConstraint;
 import cc.pineclone.interaction.NeuMouseWheelSpec;
 import cc.pineclone.interaction.api.InteractionSpec;
 import cc.pineclone.interaction.api.ModifierConstraint;
-import cc.pineclone.workflow.api.trigger.TriggerEventIdentity;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
 import cc.pineclone.workflow.api.trigger.TriggerIdentity;
 import cc.pineclone.workflow.trigger.jnativehook.api.*;
 import com.github.kwhat.jnativehook.NativeInputEvent;

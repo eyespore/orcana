@@ -1,16 +1,17 @@
 package cc.pineclone.workflow.api;
 
+import cc.pineclone.workflow.api.plugin.Plugin;
+import cc.pineclone.workflow.api.trigger.TriggerService;
+
 public interface Runtime {
 
-    void launch();  /* 启动 Runtime */
+    void registerPlugin(Plugin plugin);
 
-    void suspend();  /* 挂起 Runtime */
+    TriggerService triggerService();
 
-    void resume();  /* 恢复 Runtime */
+    void init();
 
-    void terminate();  /* 终止 Runtime */
+    void start();
 
-    RuntimeStatus status();
-
+    void stop();
 }
-

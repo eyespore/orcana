@@ -62,7 +62,7 @@ public class JNativeHookTest {
 
             @Override
             public void nativeMousePressed(NativeMouseEvent nativeEvent) {
-//                log.debug("{}", nativeEvent.paramString());
+                log.debug("{}", nativeEvent.paramString());
             }
 
             @Override

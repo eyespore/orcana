@@ -6,12 +6,14 @@ import cc.pineclone.interaction.NeuMouseSpec;
 import cc.pineclone.interaction.api.Gesture;
 import cc.pineclone.interaction.api.InteractionSpec;
 import cc.pineclone.interaction.api.ModifierConstraint;
-import cc.pineclone.workflow.api.trigger.TriggerEventIdentity;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
 import cc.pineclone.workflow.api.trigger.TriggerIdentity;
 import cc.pineclone.workflow.trigger.jnativehook.api.*;
 import com.github.kwhat.jnativehook.NativeInputEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -27,6 +29,7 @@ public abstract class GestureTrigger<
 
             private final GestureInterpreter<P> gesture;  /* 触发手势 */
     private final Function<Gesture, TriggerEventIdentity> eventIdentityFunction;
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected GestureTrigger(
             TriggerIdentity identity,
@@ -41,6 +44,7 @@ public abstract class GestureTrigger<
 
     @Override
     public void handleNativeInputEvent(P event, T originalSpec) {
+//        log.debug("GestureTrigger received event: {}", event.paramString());
         gesture.interpret(event, gesture -> emit(
                         eventIdentityFunction.apply(gesture),
                         Map.of("source_spec", originalSpec)));

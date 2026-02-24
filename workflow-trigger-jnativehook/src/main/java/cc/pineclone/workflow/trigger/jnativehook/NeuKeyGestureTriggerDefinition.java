@@ -2,8 +2,8 @@ package cc.pineclone.workflow.trigger.jnativehook;
 
 import cc.pineclone.interaction.NeuKeySpec;
 import cc.pineclone.interaction.NeuModifierConstraint;
-import cc.pineclone.workflow.api.trigger.TriggerEventIdentity;
-import cc.pineclone.workflow.trigger.DefaultTriggerDefinition;
+import cc.pineclone.workflow.api.trigger.event.TriggerEventIdentity;
+import cc.pineclone.workflow.impl.trigger.factory.DefaultTriggerDefinition;
 import cc.pineclone.workflow.trigger.jnativehook.api.SpecFilterDefinition;
 import cc.pineclone.workflow.trigger.jnativehook.gesture.GestureDefinition;
 import lombok.EqualsAndHashCode;
