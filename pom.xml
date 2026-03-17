@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cc.pineclone</groupId>
-    <artifactId>gtav-toolkit</artifactId>
+    <artifactId>eventflow</artifactId>
     <version>v0.2.0-alpha-3</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>server</module>
-        <module>workflow-core</module>
-        <module>workflow-trigger-jnativehook</module>
-        <module>user-interaction-spec</module>
+        <module>eventflow-web</module>
+        <module>eventflow-core</module>
+        <module>eventflow-plugin-jnativehook-trigger</module>
+        <module>eventflow-user-interaction-spec</module>
     </modules>
 
     <properties>
@@ -57,14 +57,14 @@
             <!-- workflow core -->
             <dependency>
                 <groupId>cc.pineclone</groupId>
-                <artifactId>workflow-core</artifactId>
+                <artifactId>eventflow-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <!-- 用户控制标准 -->
             <dependency>
                 <groupId>cc.pineclone</groupId>
-                <artifactId>user-interaction-spec</artifactId>
+                <artifactId>eventflow-user-interaction-spec</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
