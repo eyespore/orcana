@@ -6,8 +6,6 @@ import cc.pineclone.eventflow.plugin.api.Plugin;
 import cc.pineclone.eventflow.plugin.api.PluginManagerLifecycle;
 import cc.pineclone.eventflow.plugin.impl.DefaultPluginManager;
 import cc.pineclone.eventflow.runtime.impl.trigger.DefaultTriggerService;
-import cc.pineclone.eventflow.runtime.api.TriggerService;
-import cc.pineclone.eventflow.runtime.api.TriggerServiceLifecycle;
 
 public class DefaultRuntime implements Runtime {
 

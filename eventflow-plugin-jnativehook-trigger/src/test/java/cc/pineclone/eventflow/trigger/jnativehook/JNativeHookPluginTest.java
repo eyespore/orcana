@@ -11,7 +11,6 @@ import cc.pineclone.eventflow.runtime.impl.DefaultRuntime;
 import cc.pineclone.eventflow.runtime.api.Runtime;
 import cc.pineclone.eventflow.core.api.event.Event;
 import cc.pineclone.eventflow.core.api.binding.EventSelector;
-import cc.pineclone.eventflow.runtime.impl.trigger.factory.UnionTriggerDefinition;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.SpecFilterDefinition;
 import org.junit.Rule;
 import org.junit.Test;

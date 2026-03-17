@@ -6,11 +6,8 @@ import cc.pineclone.eventflow.core.api.trigger.Trigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.core.api.trigger.TriggerLifecycle;
 import cc.pineclone.eventflow.core.api.event.EventSink;
-import cc.pineclone.eventflow.config.api.CompositeTriggerDefinition;
 import cc.pineclone.eventflow.config.api.definition.TriggerDefinition;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
-import cc.pineclone.eventflow.runtime.api.TriggerRegistry;
-import cc.pineclone.eventflow.runtime.api.TriggerRegistryRuntimeAccess;
 import lombok.Getter;
 
 import java.util.*;

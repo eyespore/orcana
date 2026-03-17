@@ -3,7 +3,6 @@ package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 import cc.pineclone.eventflow.plugin.api.ComponentTemplateRegistrar;
 import cc.pineclone.eventflow.plugin.api.PluginLifecycle;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
-import cc.pineclone.eventflow.plugin.api.TriggerPlugin;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.NativeInputEventSource;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.source.NativeKeyEventSource;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.source.NativeMouseEventSource;

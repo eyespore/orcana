@@ -3,7 +3,6 @@ package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
 import cc.pineclone.eventflow.interaction.NeuMouseWheelSpec;
 import cc.pineclone.eventflow.core.api.binding.EventSelector;
-import cc.pineclone.eventflow.runtime.impl.trigger.factory.DefaultTriggerDefinition;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.SpecFilterDefinition;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

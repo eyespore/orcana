@@ -1,8 +1,6 @@
 package cc.pineclone.eventflow.runtime.impl.trigger;
 
 import cc.pineclone.eventflow.core.api.ComponentId;
-import cc.pineclone.eventflow.runtime.api.TriggerQuery;
-import cc.pineclone.eventflow.runtime.api.TriggerRegistry;
 
 import java.util.Comparator;
 import java.util.List;

@@ -1,7 +1,5 @@
 package cc.pineclone.eventflow.runtime.impl.action.ctx;
 
-import cc.pineclone.eventflow.core.api.context.ExecutionContext;
-
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
