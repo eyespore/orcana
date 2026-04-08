@@ -1,11 +1,11 @@
 package cc.pineclone.eventflow.runtime.impl.trigger;
 
-import cc.pineclone.eventflow.core.api.trigger.CompositeTrigger;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
+import cc.pineclone.eventflow.core.api.CompositeTrigger;
+import cc.pineclone.eventflow.core.api.Trigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
-import cc.pineclone.eventflow.core.api.trigger.TriggerLifecycle;
+import cc.pineclone.eventflow.core.api.TriggerLifecycle;
 import cc.pineclone.eventflow.core.api.event.Event;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
 import cc.pineclone.eventflow.core.api.event.EventSink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

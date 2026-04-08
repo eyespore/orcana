@@ -3,8 +3,8 @@ package cc.pineclone.eventflow.runtime.impl.trigger.factory;
 import cc.pineclone.eventflow.config.api.PropsNormalizer;
 import cc.pineclone.eventflow.config.api.PropsViewer;
 import cc.pineclone.eventflow.config.api.TemplateSession;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
+import cc.pineclone.eventflow.core.api.Trigger;
 import cc.pineclone.eventflow.config.api.definition.TriggerDefinition;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
 import cc.pineclone.eventflow.runtime.impl.trigger.AnyOrderTrigger;
@@ -37,7 +37,7 @@ public class AnyOrderTriggerTemplate implements TriggerTemplate {
 
         /* 事件类型 */
         normalizer.aliasKeyStrict(CANONICAL_KEY_EVENT_TYPE,
-                "event_type", "event-type", "EVENT_TYPE");
+                "event_type", "event-eventType", "EVENT_TYPE");
 
         /* 对不同事件类型的要求次数 */
         normalizer.aliasKeyStrict(CANONICAL_KEY_REQUIRED_COUNTS,

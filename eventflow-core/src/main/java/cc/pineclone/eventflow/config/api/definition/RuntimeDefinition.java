@@ -7,8 +7,8 @@ public record RuntimeDefinition(
         List<RootTriggerDefinition> rootTriggers,
         List<EventMapperDefinition> eventMappers,
         List<ActionDefinition> actions,
-        List<EventBindingDefinition> eventBindings,
-        List<CommandBindingDefinition> commandBindings
+        List<EventRouteDefinition> eventBindings,
+        List<CommandRouteDefinition> commandBindings
 ) {
 
     public RuntimeDefinition {

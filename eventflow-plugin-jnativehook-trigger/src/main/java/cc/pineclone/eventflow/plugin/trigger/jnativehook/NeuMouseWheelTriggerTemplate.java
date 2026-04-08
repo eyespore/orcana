@@ -1,10 +1,10 @@
 package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.*;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
 import cc.pineclone.eventflow.interaction.NeuMouseWheelSpec;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
+import cc.pineclone.eventflow.core.api.Trigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
 import cc.pineclone.eventflow.trigger.jnativehook.api.*;
@@ -32,7 +32,7 @@ public class NeuMouseWheelTriggerTemplate implements TriggerTemplate {
     }
 
     private Function<String, EventSelector> createEventIdentityFunction(EventSelector original) {
-        String typeTemplate = original.type();
+        String typeTemplate = original.eventType();
         if (typeTemplate != null && typeTemplate.contains("{{SIGNAL}}")) {
             return gesture -> {
                 String resolvedType = typeTemplate.replace("{{SIGNAL}}", gesture);

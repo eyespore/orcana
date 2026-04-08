@@ -1,9 +1,9 @@
 package cc.pineclone.eventflow.plugin.api.template;
 
-import cc.pineclone.eventflow.core.api.FlowComponent;
+import cc.pineclone.eventflow.core.api.CoreComponent;
 import cc.pineclone.eventflow.config.api.definition.ComponentDefinition;
 
-public interface ComponentTemplate<D extends ComponentDefinition, C extends FlowComponent> {
+public interface ComponentTemplate<D extends ComponentDefinition, C extends CoreComponent> {
 
     default String description() {
         return "";

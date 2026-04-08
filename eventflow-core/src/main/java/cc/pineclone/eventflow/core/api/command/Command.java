@@ -8,8 +8,8 @@ public interface Command {
 
     ComponentId source();
 
-    String command();
+    String name();
 
-    Map<String, Object> args();
+    Map<String, Object> params();
 
 }

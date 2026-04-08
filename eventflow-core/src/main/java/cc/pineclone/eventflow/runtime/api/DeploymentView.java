@@ -1,9 +1,7 @@
 package cc.pineclone.eventflow.runtime.api;
 
-import cc.pineclone.eventflow.core.api.action.Action;
-import cc.pineclone.eventflow.core.api.binding.CommandBinding;
-import cc.pineclone.eventflow.core.api.binding.EventBinding;
-import cc.pineclone.eventflow.core.api.mapper.EventMapper;
+import cc.pineclone.eventflow.core.api.Action;
+import cc.pineclone.eventflow.core.api.Mapper;
 
 import java.util.List;
 
@@ -13,10 +11,8 @@ public interface DeploymentView {
 
     List<Action> actions();
 
-    List<EventMapper> eventMappers();
+    List<Mapper> eventMappers();
 
-    List<EventBinding> eventBindings();
-
-    List<CommandBinding> commandBindings();
+    Router router();
 
 }

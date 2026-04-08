@@ -28,7 +28,7 @@ public class CompositeTrigger extends DelegateTrigger {
             /* 触发事件 */
             synchronized (activeSet) {
                 activeSet.add(source);
-//            lastActiveTime.put(source, System.currentTimeMillis());
+//            lastActiveTime.put(eventSourceId, System.currentTimeMillis());
                 if (activeSet.size() == triggers.size() && !isActive) {
                     isActive = true;
                     fire(TriggerEvent.of(this, TriggerStatus.COMPOSITE_ON, event.getInputSourceEvent()));
@@ -38,7 +38,7 @@ public class CompositeTrigger extends DelegateTrigger {
             /* 撤销事件 */
             synchronized (activeSet) {
 //            long now = System.currentTimeMillis();
-//            long lastActive = lastActiveTime.getOrDefault(source, 0L);
+//            long lastActive = lastActiveTime.getOrDefault(eventSourceId, 0L);
 //            if (now - lastActive < TOLERANCE_MS) return;
                 activeSet.remove(source);
                 if (isActive && activeSet.size() < triggers.size()) {

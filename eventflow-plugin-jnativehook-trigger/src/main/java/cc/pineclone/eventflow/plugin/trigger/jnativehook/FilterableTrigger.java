@@ -5,7 +5,7 @@ import cc.pineclone.eventflow.interaction.api.InteractionSpec;
 import cc.pineclone.eventflow.interaction.api.ModifierConstraint;
 import cc.pineclone.eventflow.runtime.impl.trigger.DefaultTrigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
-import cc.pineclone.eventflow.core.api.trigger.TriggerLifecycle;
+import cc.pineclone.eventflow.core.api.TriggerLifecycle;
 import cc.pineclone.eventflow.trigger.jnativehook.api.*;
 import com.github.kwhat.jnativehook.NativeInputEvent;
 import org.slf4j.Logger;

@@ -1,5 +1,6 @@
 package cc.pineclone.eventflow.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.JNativeHookTriggerPlugin;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.NeuKeyGestureTriggerDefinition;
@@ -10,7 +11,6 @@ import cc.pineclone.eventflow.interaction.NeuMouseSpec;
 import cc.pineclone.eventflow.runtime.impl.DefaultRuntime;
 import cc.pineclone.eventflow.runtime.api.Runtime;
 import cc.pineclone.eventflow.core.api.event.Event;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.SpecFilterDefinition;
 import org.junit.Rule;
 import org.junit.Test;

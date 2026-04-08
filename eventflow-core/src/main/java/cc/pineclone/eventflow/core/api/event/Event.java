@@ -12,6 +12,6 @@ public interface Event {
 
     long timestamp();
 
-    Map<String, Object> meta();
+    Map<String, Object> payload();
 
 }

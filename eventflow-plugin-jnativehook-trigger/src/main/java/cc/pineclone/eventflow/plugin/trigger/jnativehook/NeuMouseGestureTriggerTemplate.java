@@ -1,12 +1,12 @@
 package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.*;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
 import cc.pineclone.eventflow.interaction.NeuMouseSpec;
 import cc.pineclone.eventflow.interaction.api.ClickEdge;
 import cc.pineclone.eventflow.interaction.api.Gesture;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
+import cc.pineclone.eventflow.core.api.Trigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
 import cc.pineclone.eventflow.trigger.jnativehook.api.*;
@@ -60,14 +60,14 @@ public class NeuMouseGestureTriggerTemplate implements TriggerTemplate {
                 long holdTimeMs = def.getLong(HOLD_GESTURE_HOLD_THRESHOLD_MS, 0L);
                 gesture = new HoldGesture.MouseButtonHoldGesture(holdTimeMs, scheduler);
             }
-            default -> throw new IllegalArgumentException("Unsupported gesture type: " + type);
+            default -> throw new IllegalArgumentException("Unsupported gesture eventType: " + type);
         }
 
         return gesture;
     }
 
     private Function<Gesture, EventSelector> createEventIdentityFunction(EventSelector original) {
-        String typeTemplate = original.type();
+        String typeTemplate = original.eventType();
         if (typeTemplate != null && typeTemplate.contains("{{GESTURE}}")) {
             return gesture -> {
                 String resolvedType = typeTemplate.replace("{{GESTURE}}", gesture.name());

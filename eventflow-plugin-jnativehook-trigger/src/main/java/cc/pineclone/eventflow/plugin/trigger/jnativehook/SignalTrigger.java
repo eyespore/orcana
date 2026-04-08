@@ -1,11 +1,11 @@
 package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.*;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
 import cc.pineclone.eventflow.interaction.NeuMouseWheelSpec;
 import cc.pineclone.eventflow.interaction.api.InteractionSpec;
 import cc.pineclone.eventflow.interaction.api.ModifierConstraint;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.trigger.jnativehook.api.*;
 import com.github.kwhat.jnativehook.NativeInputEvent;

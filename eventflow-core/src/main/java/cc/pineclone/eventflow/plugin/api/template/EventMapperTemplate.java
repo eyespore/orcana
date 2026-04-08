@@ -1,7 +1,7 @@
 package cc.pineclone.eventflow.plugin.api.template;
 
 import cc.pineclone.eventflow.config.api.definition.EventMapperDefinition;
-import cc.pineclone.eventflow.core.api.mapper.EventMapper;
+import cc.pineclone.eventflow.core.api.Mapper;
 
-public interface EventMapperTemplate extends ComponentTemplate<EventMapperDefinition, EventMapper>  {
+public interface EventMapperTemplate extends ComponentTemplate<EventMapperDefinition, Mapper>  {
 }

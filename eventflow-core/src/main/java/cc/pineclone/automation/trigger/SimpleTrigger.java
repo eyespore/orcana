@@ -61,7 +61,7 @@ public class SimpleTrigger extends Trigger implements InputSourceListener {
     public String toString() {
         return "SimpleTrigger{" +
                 "policy=" + policy +
-                ", source=" + source +
+                ", eventSourceId=" + source +
                 '}';
     }
 }

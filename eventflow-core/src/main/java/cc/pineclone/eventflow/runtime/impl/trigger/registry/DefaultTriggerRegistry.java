@@ -1,10 +1,10 @@
 package cc.pineclone.eventflow.runtime.impl.trigger.registry;
 
 import cc.pineclone.eventflow.plugin.api.ComponentTemplateProvider;
-import cc.pineclone.eventflow.core.api.trigger.CompositeTrigger;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
+import cc.pineclone.eventflow.core.api.CompositeTrigger;
+import cc.pineclone.eventflow.core.api.Trigger;
 import cc.pineclone.eventflow.core.api.ComponentId;
-import cc.pineclone.eventflow.core.api.trigger.TriggerLifecycle;
+import cc.pineclone.eventflow.core.api.TriggerLifecycle;
 import cc.pineclone.eventflow.core.api.event.EventSink;
 import cc.pineclone.eventflow.config.api.definition.TriggerDefinition;
 import cc.pineclone.eventflow.plugin.api.template.TriggerTemplate;
@@ -13,6 +13,7 @@ import lombok.Getter;
 import java.util.*;
 import java.util.function.Consumer;
 
+@Deprecated
 public class DefaultTriggerRegistry
         implements TriggerRegistry, TriggerRegistryRuntimeAccess {
 

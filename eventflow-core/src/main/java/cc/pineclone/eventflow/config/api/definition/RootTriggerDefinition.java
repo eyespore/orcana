@@ -1,6 +1,6 @@
 package cc.pineclone.eventflow.config.api.definition;
 
-import cc.pineclone.eventflow.core.api.trigger.ConcurrencyPolicy;
+import cc.pineclone.eventflow.core.api.ConcurrencyPolicy;
 
 import java.util.Objects;
 import java.util.Set;

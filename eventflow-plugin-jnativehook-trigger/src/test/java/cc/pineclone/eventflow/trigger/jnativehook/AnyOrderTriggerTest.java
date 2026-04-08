@@ -1,5 +1,6 @@
 package cc.pineclone.eventflow.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.GestureTrigger;
 import cc.pineclone.eventflow.interaction.NeuKeySpec;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
@@ -7,7 +8,6 @@ import cc.pineclone.eventflow.interaction.api.ClickEdge;
 import cc.pineclone.eventflow.runtime.impl.trigger.AnyOrderTrigger;
 import cc.pineclone.eventflow.runtime.impl.trigger.DefaultTriggerEventBuffer;
 import cc.pineclone.eventflow.core.api.event.Event;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
 import cc.pineclone.eventflow.core.api.ComponentId;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.filter.NeuKeySpecFilter;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.gesture.ClickGesture;

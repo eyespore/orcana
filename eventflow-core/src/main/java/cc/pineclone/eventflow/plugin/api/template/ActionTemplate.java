@@ -1,7 +1,6 @@
 package cc.pineclone.eventflow.plugin.api.template;
 
-import cc.pineclone.eventflow.core.api.action.Action;
-import cc.pineclone.eventflow.core.api.command.CommandDesc;
+import cc.pineclone.eventflow.core.api.Action;
 import cc.pineclone.eventflow.config.api.definition.ActionDefinition;
 
 import java.util.Collections;

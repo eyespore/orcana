@@ -1,7 +1,7 @@
 package cc.pineclone.eventflow.plugin.api.template;
 
 import cc.pineclone.eventflow.config.api.definition.TriggerDefinition;
-import cc.pineclone.eventflow.core.api.trigger.Trigger;
+import cc.pineclone.eventflow.core.api.Trigger;
 
 public interface TriggerTemplate extends ComponentTemplate<TriggerDefinition, Trigger> {
 

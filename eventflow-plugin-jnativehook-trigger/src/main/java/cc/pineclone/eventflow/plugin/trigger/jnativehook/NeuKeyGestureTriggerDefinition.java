@@ -1,8 +1,8 @@
 package cc.pineclone.eventflow.plugin.trigger.jnativehook;
 
+import cc.pineclone.eventflow.runtime.api.selector.EventSelector;
 import cc.pineclone.eventflow.interaction.NeuKeySpec;
 import cc.pineclone.eventflow.interaction.NeuModifierConstraint;
-import cc.pineclone.eventflow.core.api.binding.EventSelector;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.api.SpecFilterDefinition;
 import cc.pineclone.eventflow.plugin.trigger.jnativehook.gesture.GestureDefinition;
 import lombok.EqualsAndHashCode;

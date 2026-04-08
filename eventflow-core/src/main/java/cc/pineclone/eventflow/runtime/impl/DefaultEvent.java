@@ -10,16 +10,16 @@ public record DefaultEvent(
         ComponentId source,
         String type,
         long timestamp,
-        Map<String, Object> meta
+        Map<String, Object> payload
 ) implements Event {
 
     public DefaultEvent {
-        Objects.requireNonNull(source, "source");
+        Objects.requireNonNull(source, "eventSourceId");
         Objects.requireNonNull(type, "type");
         if (type.isBlank()) {
-            throw new IllegalArgumentException("type must not be blank");
+            throw new IllegalArgumentException("eventType must not be blank");
         }
-        meta = meta == null ? Map.of() : Map.copyOf(meta);
+        payload = payload == null ? Map.of() : Map.copyOf(payload);
     }
 
     public DefaultEvent(ComponentId source, String type) {
