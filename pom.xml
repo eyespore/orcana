@@ -5,15 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cc.pineclone</groupId>
-    <artifactId>eventflow</artifactId>
-    <version>v0.2.0-alpha-3</version>
+    <artifactId>orcana</artifactId>
+    <version>v0.3.0-alpha-1</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>eventflow-web</module>
-        <module>eventflow-core</module>
-        <module>eventflow-plugin-jnativehook-trigger</module>
-        <module>eventflow-user-interaction-spec</module>
+<!--        <module>eventflow-web</module>-->
+<!--        <module>eventflow-core</module>-->
+<!--        <module>eventflow-plugin-jnativehook-trigger</module>-->
+<!--        <module>eventflow-user-interaction-spec</module>-->
+        <module>orcana-core</module>
+        <module>orcana-common</module>
     </modules>
 
     <properties>
@@ -21,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- 第三方库版本 -->
-        <jnativehook.version>2.2.2</jnativehook.version>
+<!--        <jnativehook.version>2.2.2</jnativehook.version>-->
         <jetbrains-annotations.version>13.0</jetbrains-annotations.version>
 
         <!-- SpringBoot 版本 -->
@@ -32,11 +34,11 @@
     <dependencyManagement>
         <dependencies>
             <!-- JNativeHook -->
-            <dependency>
-                <groupId>com.github.kwhat</groupId>
-                <artifactId>jnativehook</artifactId>
-                <version>${jnativehook.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.github.kwhat</groupId>-->
+<!--                <artifactId>jnativehook</artifactId>-->
+<!--                <version>${jnativehook.version}</version>-->
+<!--            </dependency>-->
 
             <!-- JetBrains annotations -->
             <dependency>
@@ -55,18 +57,18 @@
             </dependency>
 
             <!-- workflow core -->
-            <dependency>
-                <groupId>cc.pineclone</groupId>
-                <artifactId>eventflow-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>cc.pineclone</groupId>-->
+<!--                <artifactId>eventflow-core</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
             <!-- 用户控制标准 -->
-            <dependency>
-                <groupId>cc.pineclone</groupId>
-                <artifactId>eventflow-user-interaction-spec</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>cc.pineclone</groupId>-->
+<!--                <artifactId>eventflow-user-interaction-spec</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
         </dependencies>
     </dependencyManagement>

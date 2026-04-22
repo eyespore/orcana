@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.pineclone</groupId>
-        <artifactId>eventflow</artifactId>
+        <artifactId>orcana</artifactId>
         <version>v0.2.0-alpha-3</version>
     </parent>
 
